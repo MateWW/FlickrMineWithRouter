@@ -1,9 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpModule } from '@angular/http';
+import { Router } from '@angular/router';
+
 import { ListComponent } from './list.component';
 
-import { PhotoListService } from './photo-list.service';
-import { CommunicationService } from "../communication.service";
+import { PhotoListService } from '../photo-list.service';
+import { CommunicationService } from "../../communication.service";
+
+class RouterStub {
+  navigate(url) { return url; }
+}
+
 
 describe('ListComponent', () => {
   let component: ListComponent;
@@ -19,7 +26,8 @@ describe('ListComponent', () => {
       ],
       providers: [
         PhotoListService,
-        CommunicationService
+        CommunicationService,
+        {provide: Router, useClass : RouterStub }
       ]
     })
     .compileComponents();

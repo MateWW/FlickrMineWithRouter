@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PhotoListService } from './photo-list.service';
-import { IPageRange } from '../interfaces';
+import { PhotoListService } from '../photo-list.service';
+import { IPageRange } from '../../interfaces';
 
 @Component({
   selector: 'app-paging',

@@ -1,13 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpModule } from '@angular/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { PhotoListComponent } from './photo-list.component';
-import { PagingComponent } from './paging.component';
-import { ListComponent } from './list.component';
+import { PagingComponent } from './list/paging.component';
+import { ListComponent } from './list/list.component';
+import { SearchComponent } from './search/search.component'
 
 import { PhotoListService } from './photo-list.service';
 import { CommunicationService } from "../communication.service";
+import { SearchService } from "./search/search.service";
 
+class RouterStub {
+  navigate(url) { return url; }
+}
 
 describe('PhotoListComponent', () => {
   let component: PhotoListComponent;
@@ -16,16 +23,21 @@ describe('PhotoListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports:[
-        HttpModule
+        HttpModule,
+        FormsModule,
+        ReactiveFormsModule
       ],
       declarations: [ 
         PhotoListComponent,
         PagingComponent,
-        ListComponent
+        ListComponent,
+        SearchComponent
       ],
       providers: [
         PhotoListService,
-        CommunicationService
+        CommunicationService,
+        SearchService,
+        {provide: Router, useClass : RouterStub }
       ]
     })
     .compileComponents();

@@ -2,9 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
-import { PhotoListModule } from './list/photo-list.module';
-import { SearchModule } from './search/search.module';
+import { PhotoListModule } from './photo-list/photo-list.module';
 import { LightBoxModule } from "./light-box/light-box.module";
+import { AppRoutingModule } from "./app-routing.module";
 
 import { AppComponent } from './app.component';
 
@@ -18,7 +18,7 @@ import { CommunicationService } from "./communication.service";
     BrowserModule,
     PhotoListModule,
     LightBoxModule,
-    SearchModule,
+    AppRoutingModule,
     HttpModule
   ],
   providers: [

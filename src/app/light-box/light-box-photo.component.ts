@@ -14,10 +14,8 @@ import { LightBoxService } from './light-box.service';
   `,
   styles: [`
     .lightBox__photo{
-        width: 100vw;
-        height: 100vh;
-        position:relative;
-        z-index:1001;
+        padding: 1rem 0;
+        width: 100%;
         display:flex;
         justify-content:center;
         align-items:center;

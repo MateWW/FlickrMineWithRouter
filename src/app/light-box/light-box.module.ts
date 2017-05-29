@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LightBoxRoutingModule } from './light-box-routing.module';
 
 import { LightBoxComponent } from './light-box.component';
 
@@ -10,7 +11,8 @@ import { LightBoxDetailsComponent } from './light-box-details.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    LightBoxRoutingModule
   ],
   declarations: [
     LightBoxComponent,

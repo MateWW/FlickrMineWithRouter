@@ -1,10 +1,14 @@
 import { TestBed, inject, async} from '@angular/core/testing';
 import { HttpModule } from '@angular/http';
+import { Router } from '@angular/router';
 
 import { SearchService } from './search.service';
 
-import { CommunicationService } from "../communication.service";
+import { CommunicationService } from '../../communication.service';
 
+class RouterStub {
+  navigate(url) { return url; }
+}
 
 describe('SearchService', () => {
   beforeEach(() => {
@@ -14,7 +18,8 @@ describe('SearchService', () => {
       ],
       providers:[
         SearchService,
-        CommunicationService
+        CommunicationService,
+        {provide: Router, useClass : RouterStub }
       ]
     });
   });

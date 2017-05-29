@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { IPhotoPrepared, IPageRange } from '../interfaces';
 
 import { PhotoListService } from './photo-list.service';
-import { CommunicationService } from "../communication.service";
+import { CommunicationService } from '../communication.service';
 
 class CommunicationServiceStub{
     private stream = new Subject();

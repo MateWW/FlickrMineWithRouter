@@ -1,12 +1,16 @@
 import { TestBed, inject, async } from '@angular/core/testing';
 import { HttpModule } from '@angular/http';
+import { Router } from '@angular/router';
 
 import { LightBoxService } from './light-box.service';
-
 import { CommunicationService } from "../communication.service";
 
-
 import { IPhotoListElement, IPhotoListElementDetails, IPhotoUrls } from '../interfaces';
+
+
+class RouterStub {
+  navigate(url) { return url; }
+}
 
 describe('LightBoxService', () => {
   let element;
@@ -15,7 +19,8 @@ describe('LightBoxService', () => {
       imports: [ HttpModule ],
       providers:[
         LightBoxService,
-        CommunicationService
+        CommunicationService,
+        {provide: Router, useClass : RouterStub }
       ]
     });
     element = JSON.parse(`{"id":"34818900221","owner":"141807364@N07","secret":"8d8d397d63","server":"4252","farm":5,"title":"INJUSTICE ANYWHERE THREATENS JUSTICE EVERYWHERE","ispublic":1,"isfriend":0,"isfamily":0}`);

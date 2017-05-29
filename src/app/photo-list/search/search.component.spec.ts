@@ -1,12 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpModule } from '@angular/http';
 import { FormsModule , ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { SearchComponent } from './search.component';
 
 import { SearchService } from "./search.service";
-import { CommunicationService } from "../communication.service";
+import { CommunicationService } from '../../communication.service';
 
+class RouterStub {
+  navigate(url) { return url; }
+}
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -22,7 +26,8 @@ describe('SearchComponent', () => {
       declarations: [ SearchComponent ],
       providers:[
         SearchService,
-        CommunicationService
+        CommunicationService,
+        {provide: Router, useClass : RouterStub }
       ]
     })
     .compileComponents();

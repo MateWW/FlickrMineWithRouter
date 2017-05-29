@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 
 import { IPhotoListElement, IPhotoListElementDetails, IPhotoUrls, IPhotoPrepared } from './interfaces';
@@ -11,7 +12,7 @@ export class CommunicationService {
 
   private requestMaker:RequestMaker;
 
-  constructor( private http:Http) {
+  constructor( private http:Http , private router:Router ) {
     this.requestMaker = new RequestMaker( http );
   }
 
@@ -59,15 +60,28 @@ export class CommunicationService {
 
 
   private LightBoxStream = new Subject();
+  private photo:IPhotoListElement;
 
   showLightBox( photo:IPhotoListElement ){
+    this.lightBoxRedirect();
+    this.photo = photo;
     this.LightBoxStream.next( photo );
   }
 
   getLightBoxStream(){
-    return this.LightBoxStream.asObservable();
+    if(!this.photo)
+      return this.LightBoxStream.asObservable();
+    
+    return this.LightBoxStream.startWith(this.photo); 
   }
 
+  private lightBoxRedirect(){
+    this.router.navigate(["/details"])
+  }
+
+  lightBoxClose(){
+    this.router.navigate(["/list"]);
+  }
 
 
 

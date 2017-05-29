@@ -1,23 +1,32 @@
 import { TestBed, async } from '@angular/core/testing';
 import { HttpModule } from '@angular/http'
-import { PhotoListModule } from './list/photo-list.module';
-import { SearchModule } from './search/search.module';
+import { Router } from '@angular/router';
+
+
+import { PhotoListModule } from './photo-list/photo-list.module';
 import { LightBoxModule } from "./light-box/light-box.module";
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+
+class RouterStub {
+  navigate(url) { return url; }
+}
+
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         PhotoListModule,
-        SearchModule,
         LightBoxModule,
-        HttpModule        
+        AppRoutingModule,
+        HttpModule     
       ],
       declarations: [
         AppComponent
       ],
+      providers: [{provide: Router, useClass : RouterStub }]
     }).compileComponents();
   }));
 

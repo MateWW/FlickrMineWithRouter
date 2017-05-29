@@ -71,6 +71,7 @@ export class LightBoxService {
 
   closeLightBox(){
     this.setVisible(false);
+    this.communication.lightBoxClose();
   }
 
 }

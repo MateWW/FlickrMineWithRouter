@@ -1,8 +1,13 @@
 import { TestBed, inject , async } from '@angular/core/testing';
-import { HttpModule } from '@angular/http'
+import { HttpModule } from '@angular/http';
+import { Router } from '@angular/router';
 import { IPhotoListElement, IPhotoListElementDetails, IPhotoUrls , IPhotoPrepared } from './interfaces';
 
 import { CommunicationService } from './communication.service';
+
+class RouterStub {
+  navigate(url) { return url; }
+}
 
 
 describe('CommunicationService', () => {
@@ -13,7 +18,8 @@ describe('CommunicationService', () => {
         HttpModule
       ],
       providers: [
-        CommunicationService
+        CommunicationService,
+        {provide: Router, useClass : RouterStub }
       ]
     });
     element = {

@@ -6,7 +6,11 @@ import { LightBoxDetailsComponent } from './light-box-details.component';
 import { LightBoxService } from './light-box.service';
 import { CommunicationService } from "../communication.service";
 
+import { Router } from '@angular/router';
 
+class RouterStub {
+  navigate(url) { return url; }
+}
 
 describe('LightBoxDetailsComponent', () => {
   let component: LightBoxDetailsComponent;
@@ -18,7 +22,8 @@ describe('LightBoxDetailsComponent', () => {
       declarations: [ LightBoxDetailsComponent ],
       providers:[
         LightBoxService,
-        CommunicationService
+        CommunicationService,
+        {provide: Router, useClass : RouterStub }
       ]
     })
     .compileComponents();

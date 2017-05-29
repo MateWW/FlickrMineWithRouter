@@ -5,7 +5,7 @@ import { LightBoxService } from './light-box.service';
 @Component({
   selector: 'light-box-details',
   template: `
-    <table *ngIf="photoDetails" class="table table-striped table-inverse">
+    <table *ngIf="photoDetails" class="table table-striped">
       <thead>
         <tr>
           <th>#</th>
